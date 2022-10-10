@@ -1,8 +1,10 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule as NestConfigModule } from '@nestjs/config';
+import { APP_FILTER } from '@nestjs/core';
 import { ScraperModule } from './modules/scraper';
-import { ConfigModule, ConfigService, configuration } from './providers/config';
+import { ConfigModule, configuration } from './providers/config';
 import { DbModule } from './providers/db/db.module';
+import { HttpExceptionFilter } from '@common/filters';
 
 @Module({
   imports: [
@@ -11,6 +13,11 @@ import { DbModule } from './providers/db/db.module';
     DbModule,
     ConfigModule,
   ],
-  providers: [ConfigService],
+  providers: [
+    {
+      provide: APP_FILTER,
+      useClass: HttpExceptionFilter,
+    },
+  ],
 })
 export class AppModule {}

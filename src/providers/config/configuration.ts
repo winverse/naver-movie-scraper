@@ -35,6 +35,6 @@ export const configuration = async (): Promise<Config> => {
   );
 
   validate(config);
-  console.log('success');
+
   return config;
 };
