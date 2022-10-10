@@ -4,6 +4,4 @@ import { Controller } from '@nestjs/common';
   path: '/scrapers',
   version: ['1'],
 })
-export class ScraperController {
-  s;
-}
+export class ScraperController {}
