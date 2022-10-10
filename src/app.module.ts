@@ -3,15 +3,17 @@ import { ConfigModule as NestConfigModule } from '@nestjs/config';
 import { APP_FILTER } from '@nestjs/core';
 import { ScraperModule } from './modules/scraper';
 import { ConfigModule, configuration } from './providers/config';
-import { DbModule } from './providers/db/db.module';
+import { DBModule } from './providers/db/db.module';
 import { HttpExceptionFilter } from '@common/filters';
+import { AxiosModule } from './providers/axios/axios.module';
 
 @Module({
   imports: [
     NestConfigModule.forRoot({ load: [configuration] }),
     ScraperModule,
-    DbModule,
+    DBModule,
     ConfigModule,
+    AxiosModule,
   ],
   providers: [
     {

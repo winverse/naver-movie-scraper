@@ -1,8 +1,12 @@
+export type AppConfig = {
+  readonly port: number;
+};
+
+export type DatabaseConfig = {
+  readonly dirPath: string;
+};
+
 export type Config = {
-  app: {
-    port: number;
-  };
-  database: {
-    dirPath: string;
-  };
+  app: AppConfig;
+  database: DatabaseConfig;
 };
