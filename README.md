@@ -6,10 +6,16 @@
 - [ ] 줄거리
 - [ ] 평점
 - [ ] 인기순 댓글 불러오기
-- [ ] CSV 파일 저장
+- [ ] JSON db 저장
+
+# To-do
+- Scraper 구현
+- DB provider 구현
+- html handler 구현
+- selector 구현
+- 테스트 코드 작성
 
 # Stack
-
 - Fastify
 - Axios
 - Cheerio

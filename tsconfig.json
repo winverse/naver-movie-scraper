@@ -16,6 +16,24 @@
     "noImplicitAny": false,
     "strictBindCallApply": false,
     "forceConsistentCasingInFileNames": false,
-    "noFallthroughCasesInSwitch": false
+    "noFallthroughCasesInSwitch": false,
+    "esModuleInterop": true,
+    "paths": {
+      "@providers/*": [
+        "src/providers/*"
+      ],      
+      "@modules/*": [
+        "src/modules/*"
+      ],
+      "@constants/*": [
+        "src/constants/*"
+      ],
+      "@common/*": [
+        "src/common/*"
+      ],
+      "@config/*": [
+        "config/*"
+      ]
+    }
   }
 }
