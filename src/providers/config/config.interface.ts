@@ -3,7 +3,7 @@ export type AppConfig = {
 };
 
 export type DatabaseConfig = {
-  readonly dirPath: string;
+  readonly name: string;
 };
 
 export type Config = {

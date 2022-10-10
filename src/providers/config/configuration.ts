@@ -10,7 +10,7 @@ const validate = (config: Config): void => {
       port: Joi.number().required(),
     }),
     database: Joi.object().keys({
-      dirPath: Joi.string().required(),
+      name: Joi.string().required(),
     }),
   });
 

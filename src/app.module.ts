@@ -6,6 +6,7 @@ import { ConfigModule, configuration } from './providers/config';
 import { DBModule } from './providers/db/db.module';
 import { HttpExceptionFilter } from '@common/filters';
 import { AxiosModule } from './providers/axios/axios.module';
+import { UtilsModule } from './providers/utils/utils.module';
 
 @Module({
   imports: [
@@ -14,6 +15,7 @@ import { AxiosModule } from './providers/axios/axios.module';
     DBModule,
     ConfigModule,
     AxiosModule,
+    UtilsModule,
   ],
   providers: [
     {

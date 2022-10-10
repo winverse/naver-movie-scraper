@@ -1,24 +1,30 @@
 import { MovieMetaDataFromChart } from '@common/interfaces';
 import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@providers/config';
-import { Low, JSONFile } from 'lowdb';
-import path from 'path';
-import { fileURLToPath } from 'url';
+import { TableNames } from '@providers/db/db.interface';
+import { UtilsService } from '@providers/utils';
+import { JsonDB, Config } from 'node-json-db';
+import { zipWith } from 'ramda';
 
 @Injectable()
 export class DBService {
-  constructor(private readonly config: ConfigService) {}
-  async init() {
-    const dirPath = this.config.get('database.dirPath');
-    const databaseHome = path.resolve(process.cwd(), dirPath);
-    console.log(databaseHome);
-  }
+  constructor(
+    private readonly config: ConfigService,
+    private readonly utils: UtilsService,
+  ) {}
   get db() {
-    return this.init();
+    const dbName = this.config.get('database.name');
+    const dbConfig = new Config(dbName, true, true, '/');
+    const json = new JsonDB(dbConfig);
+    return json;
   }
-  async saveTop10MovieMetaData(data: MovieMetaDataFromChart[]) {
-    this.init();
-    // console.log('data', data);
-    console.log('Save!');
+  setIdWithData(data: Record<any, any>[]) {
+    const ids: string[] = Array(data.length).fill(this.utils.genId);
+    const result = zipWith((id, data) => ({ id, ...data }), ids, data);
+    return result;
+  }
+  async save(table: TableNames, data: MovieMetaDataFromChart[]) {
+    const rows = this.setIdWithData(data);
+    await this.db.push(table, rows);
   }
 }

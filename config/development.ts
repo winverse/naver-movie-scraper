@@ -5,6 +5,6 @@ export const config: Config = {
     port: 8080,
   },
   database: {
-    dirPath: '../database',
+    name: 'database',
   },
 };
