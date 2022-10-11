@@ -2,20 +2,24 @@ import { Module } from '@nestjs/common';
 import { ConfigModule as NestConfigModule } from '@nestjs/config';
 import { APP_FILTER } from '@nestjs/core';
 import { ScraperModule } from './modules/scraper';
-import { ConfigModule, configuration } from './providers/config';
-import { DBModule } from './providers/db/db.module';
 import { HttpExceptionFilter } from '@common/filters';
-import { AxiosModule } from './providers/axios/axios.module';
-import { UtilsModule } from './providers/utils/utils.module';
+import { ConfigModule, configuration } from './providers/config';
+import { DBModule } from './providers/db';
+import { AxiosModule } from './providers/axios';
+import { UtilsModule } from './providers/utils';
+import { CoreModule } from './providers/core';
+import { FsModule } from './providers/fs/fs.module';
 
 @Module({
   imports: [
-    NestConfigModule.forRoot({ load: [configuration] }),
+    NestConfigModule.forRoot({ load: [configuration], cache: true }),
+    ConfigModule,
     ScraperModule,
     DBModule,
-    ConfigModule,
     AxiosModule,
     UtilsModule,
+    CoreModule,
+    FsModule,
   ],
   providers: [
     {

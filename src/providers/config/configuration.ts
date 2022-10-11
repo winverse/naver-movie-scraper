@@ -11,6 +11,7 @@ const validate = (config: Config): void => {
     }),
     database: Joi.object().keys({
       name: Joi.string().required(),
+      tables: Joi.array().items(Joi.string().required()).required(),
     }),
   });
 
@@ -27,7 +28,7 @@ export const configuration = async (): Promise<Config> => {
   const exists = await fs.existsSync(filePath);
 
   if (!exists) {
-    throw new Error(`Missing ${fileName} env file`);
+    throw new Error(`Not found ${fileName}.json file`);
   }
 
   const { config }: { config: Config } = await import(

@@ -34,7 +34,7 @@ export class ScraperService {
         movieCode: movie.movieCode,
       }));
 
-      await this.db.save('movies-meta', movieMetaData);
+      await this.db.insert('moviesMeta', movieMetaData);
     } catch (error) {
       throw new InternalServerErrorException(error);
     }

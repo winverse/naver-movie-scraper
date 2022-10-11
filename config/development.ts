@@ -6,5 +6,6 @@ export const config: Config = {
   },
   database: {
     name: 'database',
+    tables: ['moviesMeta', 'moviesDetail'],
   },
 };
