@@ -3,6 +3,10 @@ import { Injectable, InternalServerErrorException } from '@nestjs/common';
 import { BoxOfficeChartList } from '@common/interfaces';
 import { DBService } from '@providers/db';
 import { FAILED_GET_MOVIE_DATA } from '@constants/errors.constants';
+import {
+  MOVIE_DETAIL_DEFAULT_HOST,
+  POST_URL_DEFAULT_HOST,
+} from '@constants/naver.constants';
 
 @Injectable()
 export class ScraperService {
@@ -30,7 +34,8 @@ export class ScraperService {
 
       const movieMetaData = BOXOFFICE.map(movie => ({
         movieTitle: movie.movieTitle,
-        posterImageUrl: `https://movie-phinf.pstatic.net/${movie.posterImageUrl}`,
+        posterImageUrl: `${POST_URL_DEFAULT_HOST}${movie.posterImageUrl}`,
+        detailUrl: `${MOVIE_DETAIL_DEFAULT_HOST}${movie.movieCode}`,
         movieCode: movie.movieCode,
       }));
 

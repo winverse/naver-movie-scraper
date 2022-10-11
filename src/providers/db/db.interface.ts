@@ -5,6 +5,7 @@ export type MoviesMeta = {
   movieTitle: string;
   posterImageUrl: string;
   movieCode: string;
+  detailUrl: string;
 };
 
 export type MoviesDetail = {
