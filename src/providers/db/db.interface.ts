@@ -11,13 +11,12 @@ export type MoviesMeta = {
 export type MoviesDetail = {
   id: string;
   movieTitle: string;
-  overview: string;
-  director: string;
+  genre: string;
   screenTime: string;
   releaseDate: string;
+  director: string;
   plot: string;
   audienceRating: string;
-  comments: string[];
 };
 
 export type CreateOrUpdateInput<T extends TableNames> = T extends 'moviesMeta'

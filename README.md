@@ -1,3 +1,8 @@
+# Install Dependencies
+```
+pnpm install
+```
+
 # 네이버 영화 크롤러
 
 - [ ] 네이버 박스오피스 1~10위
@@ -16,4 +21,4 @@
 - Axios
 - Cheerio
 - Typescript
-- node-json-db
+

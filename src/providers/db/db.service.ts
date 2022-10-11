@@ -28,7 +28,9 @@ export class DBService {
     );
   }
   private setIdWithData<T extends TableNames>(data: any[]): TableSchema<T>[] {
-    const ids = Array(data.length).fill(this.utils.genId);
+    const ids = Array(data.length)
+      .fill(null)
+      .map(() => this.utils.genId);
     const result = zipWith((id, data) => ({ id, ...data }), ids, data);
     return result;
   }

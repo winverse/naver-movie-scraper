@@ -3,9 +3,10 @@ import { Module } from '@nestjs/common';
 import { ScraperService } from './scraper.service';
 import { ScraperController } from './scraper.controller';
 import { DBModule } from '@providers/db';
+import { UtilsModule } from '@providers/utils';
 
 @Module({
-  imports: [AxiosModule, DBModule],
+  imports: [AxiosModule, DBModule, UtilsModule],
   providers: [ScraperService],
   controllers: [ScraperController],
 })
