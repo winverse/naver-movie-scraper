@@ -1,8 +1,9 @@
+import { TableNames } from '@providers/db/db.interface';
+
 export type AppConfig = {
   readonly port: number;
 };
 
-export type TableNames = 'moviesDetail' | 'moviesMeta';
 export type DatabaseConfig = {
   readonly name: string;
   readonly tables: TableNames[];

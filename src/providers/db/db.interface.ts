@@ -1,4 +1,4 @@
-import { TableNames } from '@providers/config';
+export type TableNames = 'moviesDetail' | 'moviesMeta';
 
 export type MoviesMeta = {
   id: string;
@@ -19,8 +19,14 @@ export type MoviesDetail = {
   comments: string[];
 };
 
-export type Schema<T extends TableNames> = T extends 'moviesMeta'
+export type CreateOrUpdateInput<T extends TableNames> = T extends 'moviesMeta'
   ? Omit<MoviesMeta, 'id'>
   : T extends 'MoviesDetail'
   ? Omit<MoviesDetail, 'id'>
+  : never;
+
+export type TableSchema<T extends TableNames> = T extends 'moviesMeta'
+  ? MoviesMeta
+  : T extends 'MoviesDetail'
+  ? MoviesDetail
   : never;
