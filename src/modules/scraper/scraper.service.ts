@@ -1,5 +1,9 @@
 import { AxiosService } from '@providers/axios';
-import { Injectable, InternalServerErrorException } from '@nestjs/common';
+import {
+  ConflictException,
+  Injectable,
+  InternalServerErrorException,
+} from '@nestjs/common';
 import { BoxOfficeChartList } from '@common/interfaces';
 import { DBService } from '@providers/db';
 import { FAILED_GET_MOVIE_DATA } from '@constants/errors.constants';
@@ -17,8 +21,7 @@ export class ScraperService {
     private readonly db: DBService,
     private readonly utils: UtilsService,
   ) {}
-  // 탑 10 무비 링크 가져오기
-  async saveTop10MoviesLink() {
+  async getTop10MoviesLink() {
     try {
       const movies = await this.axios.get<BoxOfficeChartList>(
         'https://movie.naver.com/movieChartJson.naver?type=BOXOFFICE',
@@ -47,14 +50,20 @@ export class ScraperService {
       throw new InternalServerErrorException(error);
     }
   }
-  // 영화 상세 정보 가져오기
   async getMovieDetails() {
     try {
       const rows = await this.db.findAll('moviesMeta');
+
+      if (rows.length === 0) {
+        throw new ConflictException(
+          'Url 정보가 존재하지 않습니다.\nTop10 영화 데이터를 먼저 불러와주세요.',
+        );
+      }
+
       const result = [];
       for (const row of rows) {
-        // scrap mananer
-        await this.utils.sleep(500);
+        // scraper mananer
+        await this.utils.sleep(100);
         const { data } = await this.axios.get<string>(row.detailUrl, {
           headers: {
             referer: 'https://movie.naver.com/',

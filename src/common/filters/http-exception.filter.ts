@@ -10,12 +10,11 @@ import type { FastifyReply } from 'fastify';
 @Catch()
 export class HttpExceptionFilter implements ExceptionFilter {
   catch(exception: unknown, host: ArgumentsHost) {
-    const ctx = host.switchToHttp(); // get basic nestjs framework engine
+    const ctx = host.switchToHttp();
     const reply = ctx.getResponse<FastifyReply>();
 
     if (exception instanceof HttpException) {
       const exceptionResponse: any = exception.getResponse();
-      console.log('HttpException exception filter');
 
       const statusCode =
         exceptionResponse?.status || exceptionResponse.statusCode || 500;
@@ -29,8 +28,6 @@ export class HttpExceptionFilter implements ExceptionFilter {
         message,
         error,
       };
-
-      // Add log controller
 
       reply.status(statusCode).send(res);
     } else {
