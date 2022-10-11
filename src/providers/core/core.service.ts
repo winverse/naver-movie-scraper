@@ -19,6 +19,6 @@ export class CoreService implements OnModuleInit {
         this.fs.getFilePathWithCwd(`${dbName}/${tableName}.json`),
       )
       .filter(filePath => !this.fs.existsSync(filePath))
-      .forEach(filePath => this.fs.writeFileSync(filePath, '[]'));
+      .forEach(filePath => this.fs.writeFileSync(filePath, []));
   }
 }

@@ -11,7 +11,7 @@ export class FsService {
     const data = fs.readFileSync(filePath, 'utf-8');
     return data || JSON.stringify([]);
   }
-  writeFileSync(filePath: string, data: string) {
+  writeFileSync(filePath: string, data: unknown) {
     if (!filePath) return;
     return fs.writeFileSync(filePath, JSON.stringify(data, null, 4), 'utf-8');
   }
