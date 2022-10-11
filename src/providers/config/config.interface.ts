@@ -5,7 +5,7 @@ export type AppConfig = {
 };
 
 export type DatabaseConfig = {
-  readonly name: string;
+  readonly dbHome: string;
   readonly tables: TableNames[];
 };
 

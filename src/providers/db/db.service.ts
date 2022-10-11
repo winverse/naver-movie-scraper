@@ -17,7 +17,7 @@ export class DBService {
     private readonly fs: FsService,
   ) {}
   get tableFilePath(): Record<TableNames, string> {
-    const dbName = this.config.get('database.name');
+    const dbName = this.config.get('database.dbHome');
     const tableNames = this.config.get('database.tables');
     return tableNames.reduce(
       (result, table) =>

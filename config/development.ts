@@ -1,11 +1,11 @@
-import { Config } from '@providers/config/config.interface';
+import { Config } from '@providers/config';
 
 export const config: Config = {
   app: {
     port: 8080,
   },
   database: {
-    name: 'database',
+    dbHome: 'database',
     tables: ['moviesMeta', 'moviesDetail'],
   },
 };

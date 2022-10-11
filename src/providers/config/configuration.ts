@@ -10,7 +10,7 @@ const validate = (config: Config): void => {
       port: Joi.number().required(),
     }),
     database: Joi.object().keys({
-      name: Joi.string().required(),
+      dbHome: Joi.string().required(),
       tables: Joi.array().items(Joi.string().required()).required(),
     }),
   });
