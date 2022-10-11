@@ -21,9 +21,9 @@ export class ScraperService {
     private readonly db: DBService,
     private readonly utils: UtilsService,
   ) {}
-  async getTop10MoviesLink() {
+  async getTop10MoviesMetaData() {
     try {
-      const movies = await this.axios.get<BoxOfficeChartList>(
+      const { data, status } = await this.axios.get<BoxOfficeChartList>(
         'https://movie.naver.com/movieChartJson.naver?type=BOXOFFICE',
         {
           headers: {
@@ -32,11 +32,11 @@ export class ScraperService {
         },
       );
 
-      if (movies.status !== 200) {
+      if (status !== 200) {
         throw new Error(FAILED_GET_MOVIE_DATA);
       }
 
-      const { BOXOFFICE } = movies.data.movieChartList;
+      const { BOXOFFICE } = data.movieChartList;
 
       const movieMetaData = BOXOFFICE.map(movie => ({
         movieTitle: movie.movieTitle,

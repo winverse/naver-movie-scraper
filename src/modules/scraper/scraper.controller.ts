@@ -14,9 +14,9 @@ export class ScraperController {
   ) {}
   @Get('/ranker-links')
   async getRankerMovies(@Res() reply: FastifyReply) {
-    const data = await this.scraperService.getTop10MoviesLink();
+    const data = await this.scraperService.getTop10MoviesMetaData();
     await this.db.create('moviesMeta', data);
-    reply.status(HttpStatus.OK).send('Ok');
+    reply.status(HttpStatus.OK).send(data);
   }
   @Get('/details')
   async getMovieDetail(@Res() reply: FastifyReply) {
